@@ -13,7 +13,7 @@ type Seeds = Int
 data Board =
     Board { isPlayerOne :: Bool
     , lenght :: Int
-    , holes :: [Seeds]
+    , houses :: [Seeds]
     } deriving (Show)
 
 makeBoard :: Int -> Board
@@ -23,7 +23,7 @@ makeBoard x =
 
 move :: Board -> Int -> Board
 move b m =
-    let (seedCount, newHoles) = myTake m (holes b)
+    let (seedCount, newHoles) = myTake m (houses b)
     in Board (not (isPlayerOne b)) (lenght b) (move' newHoles ((m+1),  seedCount))
 
 myTake :: Int -> [Seeds] -> (Int, [Seeds])
